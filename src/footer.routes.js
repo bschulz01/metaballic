@@ -14,26 +14,22 @@ const date = new Date().getFullYear();
 
 export default {
   brand: {
-    name: "Material Kit 2",
+    name: "IDEA Hacks 2022",
     image: logoCT,
     route: "/",
   },
   socials: [
     {
       icon: <FacebookIcon />,
-      link: "https://www.facebook.com/CreativeTim/",
-    },
-    {
-      icon: <TwitterIcon />,
-      link: "https://twitter.com/creativetim",
+      link: "https://www.facebook.com/groups/uclaieee/",
     },
     {
       icon: <GitHubIcon />,
-      link: "https://github.com/creativetimofficial",
+      link: "https://github.com/bschulz01/metaballic",
     },
     {
       icon: <YouTubeIcon />,
-      link: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w",
+      link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     },
   ],
   menus: [
@@ -74,18 +70,8 @@ export default {
   ],
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
-      All rights reserved. Copyright &copy; {date} Material Kit by{" "}
-      <MKTypography
-        component="a"
-        href="https://www.creative-tim.com"
-        target="_blank"
-        rel="noreferrer"
-        variant="button"
-        fontWeight="regular"
-      >
-        Creative Tim
-      </MKTypography>
-      .
+      All rights reserved. Copyright &copy; {date}. 
+      <br/>"You miss 100% of the shots you don't take" - Wayne Gretzky - Michael Scott.
     </MKTypography>
   ),
 };

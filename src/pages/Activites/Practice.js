@@ -59,7 +59,7 @@ function Practice() {
               rgba(gradients.dark.state, 0.6)
             )}, url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           display: "grid",
           placeItems: "center",
         }}

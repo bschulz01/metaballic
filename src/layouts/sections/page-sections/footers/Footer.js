@@ -37,8 +37,9 @@ function Footer() {
             mb={{ xs: 3, lg: 0 }}
           >
             <MKTypography variant="h6" textTransform="uppercase" mb={{ xs: 2, lg: 3 }}>
-              Metabollic
+              Metaballic
             </MKTypography>
+            {/* <MKBox component="img" src={logoCT} alt={"Metaballic"} maxHeight="2rem" mb={2} /> */}
             <Stack
               component="ul"
               direction="row"
@@ -90,8 +91,7 @@ function Footer() {
               </MKBox>
             </Stack>
             <MKTypography variant="button" opacity={0.8}>
-              Copyright © <script>document.write(new Date().getFullYear())</script>2021 Material
-              Design by Creative Tim.
+              Copyright © <script>document.write(new Date().getFullYear())</script>.
             </MKTypography>
           </Grid>
           <Grid item xs={12} lg={6} ml="auto" textAlign={{ xs: "center", lg: "right" }}>
@@ -112,7 +112,7 @@ function Footer() {
             </MKTypography>
             <MKTypography
               component={Link}
-              href="#twitter"
+              href="https://www.facebook.com/groups/uclaieee/"
               target="_blank"
               rel="noreferrer"
               variant="body2"
@@ -120,28 +120,17 @@ function Footer() {
               opacity={0.5}
               mr={3}
             >
-              <i className="fab fa-twitter" />
+              <i className="fab fa-facebook" />
             </MKTypography>
             <MKTypography
               component={Link}
-              href="#pinterest"
+              href="https://github.com/bschulz01/metabollic"
               target="_blank"
               rel="noreferrer"
               variant="body2"
               color="dark"
               opacity={0.5}
               mr={3}
-            >
-              <i className="fab fa-pinterest" />
-            </MKTypography>
-            <MKTypography
-              component={Link}
-              href="#github"
-              target="_blank"
-              rel="noreferrer"
-              variant="body2"
-              color="dark"
-              opacity={0.5}
             >
               <i className="fab fa-github" />
             </MKTypography>
