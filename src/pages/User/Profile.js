@@ -24,6 +24,7 @@ import MKTypography from "../../components/MKTypography";
 import DefaultNavbar from "../../examples/Navbars/DefaultNavbar";
 
 // Author page sections
+import UserInfo from "./UserInfo";
 import Footer from "../../layouts/sections/page-sections/footers/Footer";
 
 // Routes
@@ -70,6 +71,7 @@ function Profile() {
           <MKTypography>
             Put in stuff about user here
           </MKTypography>
+          <UserInfo/>
         </Card>
         <Footer />
       </MKBox>
