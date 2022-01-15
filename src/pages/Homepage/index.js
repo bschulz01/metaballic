@@ -77,7 +77,7 @@ function Homepage() {
                 },
               })}
             >
-              Metabollic{" "}
+              Metaballic{" "}
             </MKTypography>
             <MKTypography
               variant="body1"
