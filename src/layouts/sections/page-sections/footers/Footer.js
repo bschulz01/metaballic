@@ -124,7 +124,7 @@ function Footer() {
             </MKTypography>
             <MKTypography
               component={Link}
-              href="https://github.com/bschulz01/metabollic"
+              href="https://github.com/bschulz01/metaballic"
               target="_blank"
               rel="noreferrer"
               variant="body2"
