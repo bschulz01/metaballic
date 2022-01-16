@@ -1,6 +1,6 @@
-#include <MetaBoard.h>
+#include "MetaBoard.h"
 
-Metaboard meta;
+MetaBoard meta;
 
 // TODO: Persistent Memory on ESP32
 #include <Preferences.h>
@@ -104,6 +104,7 @@ void setup(){
 
 
 void loop(){
+	meta.checkSession();
   meta.getIR();
 	meta.getAcceleration();
 	meta.bucketMade();

@@ -108,12 +108,12 @@ int MetaBoard::getIR()
 }
 
 // returns magnitude of x, y, and z accelerations
-double MetaBoard::getMagnitudeAcceleration()
+double MetaBoard::getAcceleration()
 {
   sensors_event_t a, g, temp;
   mpu.getEvent(&a, &g, &temp);
 
-  newAcceleration = sqrt(acc.acceleration.x*acc.acceleration.x + acc.acceleration.y*acc.acceleration.y + acc.acceleration.z*acc.acceleration.z);
+  newAcceleration = sqrt(a.acceleration.x * a.acceleration.x + a.acceleration.y * a.acceleration.y + a.acceleration.z * a.acceleration.z);
 	if (oldAcceleration == 0.0 && previousAttemptTime == 0)
 		oldAcceleration = newAcceleration;
 	return newAcceleration;
@@ -123,7 +123,7 @@ double MetaBoard::getMagnitudeAcceleration()
 void MetaBoard::bucketMade()
 {
   // compare IR
-	diffIR = oldIRReading - newIRReading;
+	double diffIR = oldIRReading - newIRReading;
 	if (diffIR > 100)
 	{
 		if(millis() - previousBucketTime < BUCKET_COOLDOWN_TIME) {
@@ -140,12 +140,12 @@ void MetaBoard::bucketMade()
 // increment numAttempts if backboard hit (i.e change in acceleration)
 void MetaBoard::shotMade() {
     if (newAcceleration - oldAcceleration > 1.5) {
-    if (millis() - previousShotTime < BUCKET_COOLDOWN_TIME) {
+    if (millis() - previousAttemptTime < BUCKET_COOLDOWN_TIME) {
       Serial.println("False Shot Alarm");
     } else {
       Serial.println("Shot Made");
       numAttempts++;
-      previousShotTime = millis();
+      previousAttemptTime = millis();
     }
   }
   oldAcceleration = newAcceleration;  
@@ -165,7 +165,8 @@ int MetaBoard::getAttempts()
 
 void MetaBoard::newSession()
 {
-	return;
+  numBuckets = 0;
+	numAttempts = 0;
 }
 
 void MetaBoard::endSession()

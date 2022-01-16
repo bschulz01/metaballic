@@ -28,6 +28,8 @@
 #define BUZZER_CHANNEL 0
 #define BUCKET_COOLDOWN_TIME 1000 // ms
 
+enum State {idle, active};
+
 class MetaBoard
 {
     public:
@@ -38,7 +40,7 @@ class MetaBoard
         void setRightScore(int score); // value of -1 clears screen
 
 				int getIR();
-				double getMagnitudeAcceleration();
+				double getAcceleration();
         void bucketMade();
         void shotMade();
         int getBuckets();
@@ -55,6 +57,9 @@ class MetaBoard
 				// update vars (numBuckets, numAttempts)
 				
 		private:
+        // current state
+        State currentState = idle;
+
 				// OLED Displays
 				Adafruit_SSD1306 leftDisplay;
         Adafruit_SSD1306 rightDisplay;
@@ -78,6 +83,6 @@ class MetaBoard
         unsigned long previousBucketTime = 0;
         unsigned long previousAttemptTime = 0;
 
-}
+};
 
 #endif
