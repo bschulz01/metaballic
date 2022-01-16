@@ -79,7 +79,7 @@ function Practice() {
 
     get(ref(db, 'users/'+uid+'/currentSession'))
       .then((snapshot) => {
-        let newNumber = (parseInt(snapshot.val())+1).toString();
+        let newNumber = (parseInt(snapshot.val()? snapshot.val() : 0)+1).toString();
         set(ref(db, 'users/'+uid+'/sessions/'+newNumber), {
           "points": 0,
           "shots": 0

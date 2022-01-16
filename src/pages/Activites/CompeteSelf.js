@@ -93,10 +93,7 @@ function CompeteSelf() {
                 },
               })}
             >
-              Compete with a record
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              This isn&apos;t live, but you still are competing against a real person.
+              Compete against a record
             </MKTypography>
           </Grid>
         </Container>

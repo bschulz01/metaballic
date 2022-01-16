@@ -40,11 +40,42 @@ import Grid from "@mui/material/Grid";
 import fire from "../User/fire";
 import loggedInRoute from "../../loggedInRoute";
 import loggedOutRoute from "../../loggedOutRoute";
-import React from "react";
+import React, {useState} from "react";
 import TransparentBlogCard from "../../examples/Cards/BlogCards/TransparentBlogCard";
 import Container from "@mui/material/Container";
+import {get, getDatabase, onValue, orderByValue, ref, child} from "firebase/database";
+import MenuItem from "@mui/material/MenuItem";
 
 function AllActivities() {
+
+  const [sessionData, setData] = useState([]);
+
+
+  function getState() {
+    if (fire.auth().currentUser) {
+      const uid = fire.auth().currentUser.uid;
+      const dbRef = ref(getDatabase());
+
+      // const sessionRefs = ref(db, 'users/'+uid+'/sessions');
+      get(child(dbRef, "users/" + uid + "/sessions")).then((snapshot) => {
+        let newData = []
+        if (snapshot.exists()) {
+          Object.entries(snapshot.val()).forEach(function (value, index) {
+            newData[value[0]] = value[1]
+          })
+        } else {
+          console.log("No data available");
+        }
+        console.log(sessionData);
+        setData(newData)
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+  }
+
+
+
   return (
     <MKBox component="section" py={2}>
       <DefaultNavbar
@@ -97,28 +128,20 @@ function AllActivities() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
+
         <Grid container item xs={12} lg={7} justifyContent="center" mx="auto" spacing={7}>
           {/*<Posts title="All Past Activites" />*/}
-          <Grid item xs={12} sm={6} lg={3}>
-            <TransparentBlogCard image={activityImg} description="Test" action={{
-                    type: "internal",
-                    route: "/pages/blogs/author",
-                    color: "info",
-                    label: "read more",
-                  }} title="Title"/>
-          </Grid>
-          <ActivityTile
-            image={activityImg}
-            activityName="Practice Session"
-            shotsMade={10}
-            shotsAttempted={50}
-          />
-          <ActivityTile
-            image={activityImg}
-            activityName="Practice Session 2"
-            shotsMade={30}
-            shotsAttempted={50}
-          />
+          {getState()}
+          {sessionData.map((value, index) => {
+            return (
+              <ActivityTile
+                image={activityImg}
+                activityName={"Practice Session " + index}
+                shotsMade={value['points']}
+                shotsAttempted={value['shots']}
+              />
+            );
+          })}
         </Grid>
       </Card>
       <MKBox pt={6} px={1} mt={6}>

@@ -29,8 +29,78 @@ import team1 from "../../assets/images/team-5.jpg";
 import team2 from "../../assets/images/bruce-mars.jpg";
 import team3 from "../../assets/images/ivana-squares.jpg";
 import team4 from "../../assets/images/ivana-square.jpg";
+import tyler from "../../assets/images/friends/tyler.jpeg"
+import james from "../../assets/images/friends/james.jpeg"
+import aditya from "../../assets/images/friends/aditya.jpeg"
+import pranav from "../../assets/images/friends/pranav.jpeg"
+
+import fire from "./fire";
+import {child, get, getDatabase, ref} from "firebase/database";
+import {useState} from "react";
 
 function FriendList() {
+
+  // const [friendInfo, setFriendInfo] = useState([])
+
+  const friends = [
+    {
+      img: james,
+      name: "James Tseng",
+      label: "Tofu Connoisseur",
+      description: "One of the nicest guys out there"
+    },
+    {
+      img: pranav,
+      name: "Pranav Srinivasan",
+      label: "Ideahacks Director",
+      description: "He never fails to get me excited about sports"
+    },
+    {
+      img: tyler,
+      name: "Tyler Price",
+      label: "Soldering Master",
+      description: "He provides amazing tater tots for us"
+    },
+    {
+      img: aditya,
+      name: "Aditya Mishra",
+      label: "Our resident RA",
+      description: "He gets us hill food!"
+    },
+
+  ]
+  // function getFriendInfo(id) {
+  //   const dbRef = ref(getDatabase());
+  //   get(child(dbRef, "users/" + id + "/info")).then((snapshot) => {
+  //     setFriendInfo(snapshot.val())
+  //   });
+  // }
+
+  // function loadData() {
+  //   if (fire.auth().currentUser) {
+  //     const uid = fire.auth().currentUser.uid;
+  //     const dbRef = ref(getDatabase());
+  //
+  //     // const sessionRefs = ref(db, 'users/'+uid+'/sessions');
+  //     get(child(dbRef, "users/" + uid + "/friends")).then((snapshot) => {
+  //       let friendList = [];
+  //       if (snapshot.exists()) {
+  //         Object.entries(snapshot.val()).forEach(function (value, index) {
+  //           console.log(value)
+  //           friendList.push([value[1]]);
+  //         })
+  //       } else {
+  //         console.log("No data available");
+  //       }
+  //       setFriends(friendList)
+  //     }).catch((error) => {
+  //       console.error(error);
+  //     });
+  //   }
+  //
+  //   console.log(friends);
+  // }
+
   return (
     <MKBox
       component="section"
@@ -53,46 +123,21 @@ function FriendList() {
           </Grid>
         </Grid>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={6}>
-            <MKBox mb={1}>
-              <HorizontalTeamCard
-                image={team1}
-                name="Friend 1"
-                position={{ color: "info", label: "A Real One" }}
-                description="Congrats! You have a friend"
-              />
-            </MKBox>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <MKBox mb={1}>
-              <HorizontalTeamCard
-                image={team2}
-                name="Friend 2"
-                position={{ color: "info", label: "Boss" }}
-                description="Two friends is pretty nice"
-              />
-            </MKBox>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <MKBox mb={{ xs: 1, lg: 0 }}>
-              <HorizontalTeamCard
-                image={team3}
-                name="Friend 3"
-                position={{ color: "info", label: "Athlete" }}
-                description="Third time's a charm"
-              />
-            </MKBox>
-          </Grid>
-          <Grid item xs={12} lg={6}>
-            <MKBox mb={{ xs: 1, lg: 0 }}>
-              <HorizontalTeamCard
-                image={team4}
-                name="Friend 4"
-                position={{ color: "info", label: "CS Major" }}
-                description="You keep this one around to help you deal with Eggert"
-              />
-            </MKBox>
-          </Grid>
+          {friends.map((info, index) => {
+            // getFriendInfo(id);
+            // console.log(id, info);
+            return (
+            <Grid item xs={12} lg={6} id={index}>
+              <MKBox mb={{ xs: 1, lg: 0 }}>
+                <HorizontalTeamCard
+                      image={info.img}
+                      name={info.name}
+                      position={{ color: "info", label: info.label}}
+                      description={info.description}
+                />
+              </MKBox>
+            </Grid>)
+          })}
         </Grid>
       </Container>
     </MKBox>

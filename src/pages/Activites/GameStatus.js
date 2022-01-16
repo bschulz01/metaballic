@@ -50,18 +50,14 @@ function GameStatus() {
             <Grid item xs={12} md={4}>
               <DefaultCounterCard
                 count={score}
-                suffix="+"
                 title="Your Score"
-                description="Time remaining"
               />
             </Grid>
             <Grid item xs={12} md={4} display="flex">
               <Divider orientation="vertical" sx={{display: {xs: "none", md: "block"}, mx: 0}}/>
               <DefaultCounterCard
                 count={shots}
-                suffix="+"
                 title="Number of Shots"
-                description="I don't think we need a description"
               />
               <Divider orientation="vertical" sx={{display: {xs: "none", md: "block"}, ml: 0}}/>
             </Grid>

@@ -61,7 +61,7 @@ function ActivityDetails(props) {
               Shots made: {props.shotsMade}
             </MKTypography>
             <MKTypography>
-              Success percentage: {props.shotsMade / props.shotsAttempted * 100}%
+              Success percentage: {props.shotsAttempted == 0 ? 0 : props.shotsMade / props.shotsAttempted * 100}%
             </MKTypography>
           </MKBox>
         </MKBox>

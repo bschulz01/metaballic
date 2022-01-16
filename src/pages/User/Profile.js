@@ -73,9 +73,6 @@ function Profile() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <MKTypography>
-            Put in stuff about user here
-          </MKTypography>
           <UserInfo/>
         </Card>
         <Footer />
