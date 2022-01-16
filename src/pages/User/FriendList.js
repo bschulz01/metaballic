@@ -113,9 +113,6 @@ function FriendList() {
       <Container>
         <Grid container>
           <Grid item xs={12} md={8} sx={{ mb: 6 }}>
-            <MKTypography variant="h3" color="info">
-              The Executive Team
-            </MKTypography>
             <MKTypography variant="body2" color="white" opacity={0.8}>
               There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get good
               at. That&apos;s my skill.

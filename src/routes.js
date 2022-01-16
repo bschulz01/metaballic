@@ -147,12 +147,12 @@ const routes = [
       },
     ],
   },
-  {
-    name: "Sign in",
-    // icon: <Icon>S</Icon>,
-    route: "/authentication/sign-in",
-    component:<SignIn/>,
-  }
+  // {
+  //   name: "Sign in",
+  //   // icon: <Icon>S</Icon>,
+  //   route: "/authentication/sign-in",
+  //   component:<SignIn/>,
+  // }
 ];
 
 // if (fire.auth().currentUser) {

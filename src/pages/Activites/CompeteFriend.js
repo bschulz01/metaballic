@@ -59,10 +59,10 @@ function CompeteFriend() {
   const [userFriendMap, setFriendMap] = useState({});
   const [friend, setFriend] = useState("Select Friend");
 
-
-  if (fire.auth().currentUser) {
-    let uid = fire.auth().currentUser.uid;
-  }
+  let uid = fire.auth().currentUser.uid;
+  // if (fire.auth().currentUser) {
+  //   uid = fire.auth().currentUser.uid;
+  // }
 
   loadData();
 
@@ -80,10 +80,10 @@ function CompeteFriend() {
   }
 
   function startGame() {
-    if (fire.auth().currentUser) {
-      uid = fire.auth().currentUser.uid;
-    }
-    if (friend == '' || "select" in friend.toLowerCase()) {
+    // if (uid == '' && fire.auth().currentUser) {
+    //   uid = fire.auth().currentUser.uid;
+    // }
+    if (friend == '' || friend == 'Select User') {
       console.log('Friend not specified');
       return
     }
