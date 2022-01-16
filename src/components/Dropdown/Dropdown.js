@@ -17,7 +17,10 @@ function Dropdown(props) {
   const [dropdown, setDropdown] = useState(null);
 
   const openDropdown = ({ currentTarget }) => setDropdown(currentTarget);
-  const closeDropdown = () => setDropdown(null);
+  const closeDropdown = () => {
+    setDropdown(null);
+    console.log(dropdown);
+  }
 
 
   // Styles
@@ -42,9 +45,12 @@ function Dropdown(props) {
               {props.title} <Icon sx={dropdownIconStyles}>expand_more</Icon>
             </MKButton>
             <Menu anchorEl={dropdown} open={Boolean(dropdown)} onClose={closeDropdown}>
-              {props.items.map((item) => {
-                  return (<MenuItem key={item.id} onClick={closeDropdown}>{item}</MenuItem>);
+              {props.items.map((item, id) => {
+                  return (<MenuItem key={id} href={props.cb(item)} onClick={closeDropdown}>{item}</MenuItem>);
               })}
+              {/*<MenuItem href={props.cb("test")} onClick={closeDropdown}>Action</MenuItem>*/}
+              {/*<MenuItem onClick={closeDropdown}>Another action</MenuItem>*/}
+              {/*<MenuItem onClick={closeDropdown}>Something else here</MenuItem>*/}
             </Menu>
           </Grid>
         </Grid>

@@ -46,9 +46,11 @@ import bgImage from "assets/images/bg-about-us.jpg";
 import fire from "../User/fire";
 import loggedInRoute from "../../loggedInRoute";
 import loggedOutRoute from "../../loggedOutRoute";
-import React from "react";
+import React, {useState} from "react";
 
 function CompeteSelf() {
+
+  const [selected, selectVal] = useState("");
 
   return (
     <>
@@ -114,13 +116,21 @@ function CompeteSelf() {
               <MKTypography variant="paragraph" color="default" opacity={0.8}>
                 Select User
               </MKTypography>
-              <Dropdown items={['Myself', "TP", "Aditya", "James"]} title={"User"}/>
+              <Dropdown
+                items={['Myself', "TP", "Aditya", "James"]}
+                title={"User"}
+                cb={selectVal}
+              />
             </Grid>
             <Grid item alignItems="center">
               <MKTypography variant="paragraph" color="default" opacity={0.8}>
                 Select Event
               </MKTypography>
-              <Dropdown items={['Event 1', "Event 2", "Practice", "9000"]} title={"Event"}/>
+              <Dropdown
+                items={['Event 1', "Event 2", "Practice", "9000"]}
+                title={"Event"}
+                cb={selectVal}
+              />
             </Grid>
           </Grid>
         </Card>

@@ -55,6 +55,9 @@ function Practice() {
   const [active, setActive] = useState(false);
   const [session, setSession] = useState("0");
 
+
+  const uid = fire.auth().currentUser.uid;
+
   //
   // function getSessionStatus() {
   //   const dbRef = ref(getDatabase());
@@ -92,7 +95,6 @@ function Practice() {
   function startSession() {
     const dbRef = ref(getDatabase());
     // Write the new post's data simultaneously in the posts list and the user's post list.
-    const uid = fire.auth().currentUser.uid;
     get(child(dbRef, 'users/'+uid))
       .then((snapshot) => {
         let newStatus = false;
@@ -170,7 +172,19 @@ function Practice() {
           </Grid>
         </Container>
       </MKBox>
-      {active ? (<GameStatus sessionIndex={session}/>) : (null)}
+      {active ?
+        (<Card
+            sx={{
+              p: 2,
+              mx: {xs: 2, lg: 3},
+              mt: -8,
+              mb: 4,
+              backgroundColor: ({palette: {white}, functions: {rgba}}) => rgba(white.main, 0.8),
+              backdropFilter: "saturate(200%) blur(30px)",
+              boxShadow: ({boxShadows: {xxl}}) => xxl,
+            }}
+          ><GameStatus uid={uid}/>
+          </Card>) : null}
       <MKBox pt={6} px={1} mt={6}>
         <Footer/>
       </MKBox>
