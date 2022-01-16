@@ -1,4 +1,4 @@
-# Metabalic
+# Metaballic
 
 Metaballic is an IoT-enabled basketball tracker that adds a new dimension to a classic game.
 Live statistics wandith interactive user feedback come together to form a beautiful user experience,
