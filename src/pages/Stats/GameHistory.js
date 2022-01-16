@@ -33,11 +33,16 @@ import routes from "../../routes";
 // Images
 import bgImage from "../../assets/images/city-profile.jpg";
 import Grid from "@mui/material/Grid";
+import fire from "../User/fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React from "react";
 
 function GameHistory() {
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light

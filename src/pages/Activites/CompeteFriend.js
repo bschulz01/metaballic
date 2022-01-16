@@ -37,14 +37,22 @@ import Newsletter from "pages/LandingPages/AboutUs/sections/Newsletter";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 
+// Firebase
+import "firebase/database"
+
 // Images
 import bgImage from "assets/images/bg-about-us.jpg";
+import fire from "../User/fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React from "react";
 
 function CompeteFriend() {
 
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light

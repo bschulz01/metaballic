@@ -39,14 +39,21 @@ import footerRoutes from "footer.routes";
 
 import Dropdown from "../../components/Dropdown/Dropdown";
 
+// Firebase
+
 // Images
 import bgImage from "assets/images/bg-about-us.jpg";
+import fire from "../User/fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React from "react";
 
 function CompeteSelf() {
 
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light
@@ -86,10 +93,7 @@ function CompeteSelf() {
                 },
               })}
             >
-              Compete with a record
-            </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              This isn&apos;t live, but you still are competing against a real person.
+              Compete against a record
             </MKTypography>
           </Grid>
         </Container>

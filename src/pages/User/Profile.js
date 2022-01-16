@@ -32,11 +32,16 @@ import routes from "../../routes";
 
 // Images
 import bgImage from "../../assets/images/city-profile.jpg";
+import fire from "./fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React from "react";
 
 function Profile() {
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light
@@ -68,9 +73,6 @@ function Profile() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <MKTypography>
-            Put in stuff about user here
-          </MKTypography>
           <UserInfo/>
         </Card>
         <Footer />

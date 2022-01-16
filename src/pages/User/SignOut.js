@@ -1,4 +1,4 @@
-/*
+/**
 =========================================================
 * Material Kit 2 React - v2.0.0
 =========================================================
@@ -13,74 +13,81 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import React from "react";
+
+
+// Firebase
+import fire from "./fire"
+import 'firebase/auth'
+
 // @mui material components
 import Card from "@mui/material/Card";
+import Switch from "@mui/material/Switch";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
 
 // Material Kit 2 React components
 import MKBox from "../../components/MKBox";
 import MKTypography from "../../components/MKTypography";
+import MKInput from "../../components/MKInput";
+import MKButton from "../../components/MKButton";
 
-// Material Kit 2 React examples
+// Material Kit 2 React example components
 import DefaultNavbar from "../../examples/Navbars/DefaultNavbar";
-
-// Author page sections
-import Posts from "./sections/Posts";
 import Footer from "../../layouts/sections/page-sections/footers/Footer";
 
-// Routes
+// Material Kit 2 React page layout routes
 import routes from "../../routes";
 
 // Images
-import bgImage from "../../assets/images/city-profile.jpg";
-import Grid from "@mui/material/Grid";
-import fire from "../User/fire";
+import bgImage from "../../assets/images/bg-sign-in-basic.jpeg";
 import loggedInRoute from "../../loggedInRoute";
 import loggedOutRoute from "../../loggedOutRoute";
-import React from "react";
 
-function Records() {
+function SignOut() {
+
+  const res = fire.auth().signOut();
+  console.log(res);
+
   return (
     <>
       <DefaultNavbar
         // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
-        transparent
-        light
+        sticky
       />
-      <MKBox bgColor="white">
-        <MKBox
-          minHeight="25rem"
-          width="100%"
-          sx={{
-            backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-              `${linearGradient(
-                rgba(gradients.dark.main, 0.8),
-                rgba(gradients.dark.state, 0.8)
-              )}, url(${bgImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            display: "grid",
-            placeItems: "center",
-          }}
-        >
-
+      <MKBox
+        minHeight="75vh"
+        width="100%"
+        sx={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        <Container>
+          <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
             <MKTypography
               variant="h1"
               color="white"
+              mt={-6}
+              mb={1}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
                   fontSize: size["3xl"],
                 },
               })}
             >
-              Personal Records
+              You have successfully signed out
             </MKTypography>
-        </MKBox>
-        <Posts title="These are all your amazing achievements!"/>
-        <Footer />
+          </Grid>
+        </Container>
       </MKBox>
+      <Footer/>
     </>
   );
 }
 
-export default Records;
+export default SignOut;
