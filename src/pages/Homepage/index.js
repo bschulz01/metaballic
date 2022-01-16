@@ -44,6 +44,10 @@ import Download from "../../pages/Homepage/sections/Download";
 // Homepage page components
 import BuiltByDevelopers from "../../pages/Homepage/components/BuiltByDevelopers";
 
+// Firebase
+import fire from "../User/fire";
+import "firebase/database"
+
 // import {
 //   dashboardPanelChart,
 //   dashboardShippedProductsChart,
@@ -53,6 +57,11 @@ import BuiltByDevelopers from "../../pages/Homepage/components/BuiltByDevelopers
 
 // Routes
 import routes from "../../routes";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import UserInfo from "../User/UserInfo";
+import SignOut from "../User/SignOut";
+import SignIn from "../User/SignIn";
 import footerRoutes from "../../footer.routes";
 
 // Images
@@ -78,9 +87,15 @@ const data = {
 };
 
 function Homepage() {
+
+  // let navRoutes = routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute);
+  let navRoutes = routes;
+  // console.log(navRoutes);
+
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         sticky
       />

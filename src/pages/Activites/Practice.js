@@ -19,32 +19,102 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
-import MKButton from "components/MKButton";
+import MKBox from "../../components/MKBox";
+import MKTypography from "../../components/MKTypography";
+import MKButton from "../../components/MKButton";
 
 // Material Kit 2 React examples
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import DefaultFooter from "examples/Footers/DefaultFooter";
+import DefaultNavbar from "../../examples/Navbars/DefaultNavbar";
+import Footer from "../../layouts/sections/page-sections/footers/Footer";
 
-// About Us page sections
-import Information from "pages/LandingPages/AboutUs/sections/Information";
-import Team from "pages/LandingPages/AboutUs/sections/Team";
-import Featuring from "pages/LandingPages/AboutUs/sections/Featuring";
-import Newsletter from "pages/LandingPages/AboutUs/sections/Newsletter";
 
 // Routes
-import routes from "routes";
-import footerRoutes from "footer.routes";
+import routes from "../../routes";
 
 // Images
-import bgImage from "assets/images/bg-about-us.jpg";
+import bgImage from "../../assets/images/bg-about-us.jpg";
+import fire from "../User/fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React, {useState} from "react";
+
+import {
+  getDatabase,
+  ref,
+  child,
+  set,
+  get,
+  query,
+  orderByKey
+} from "firebase/database";
+
+import GameStatus from "./GameStatus";
 
 function Practice() {
+
+  const [active, setActive] = useState(false);
+  const [session, setSession] = useState("0");
+
+  //
+  // function getSessionStatus() {
+  //   const dbRef = ref(getDatabase());
+  //   get(child(dbRef, `users/${fire.auth().currentUser.uid}`))
+  //     .then((snapshot) => {
+  //       if (snapshot.exists()) {
+  //         if ('session' in snapshot.val()) {
+  //           return snapshot.val()['session']
+  //         } else {
+  //           return
+  //         }
+  //         return snapshot.val()
+  //       } else
+  //     }).catch((error) => {
+  //     console.error(error)
+  //   });
+  // }
+
+  function addNewSession(uid) {
+    const db = getDatabase();
+    // console.log(ref(db, 'users/'+uid+'/sessions').get());
+
+    get(ref(db, 'users/'+uid+'/currentSession'))
+      .then((snapshot) => {
+        let newNumber = (parseInt(snapshot.val())+1).toString();
+        set(ref(db, 'users/'+uid+'/sessions/'+newNumber), {
+          "points": 0,
+          "shots": 0
+        });
+        set(ref(db, 'users/'+uid+'/currentSession'), newNumber);
+        setSession(newNumber);
+    });
+  }
+
+  function startSession() {
+    const dbRef = ref(getDatabase());
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const uid = fire.auth().currentUser.uid;
+    get(child(dbRef, 'users/'+uid))
+      .then((snapshot) => {
+        let newStatus = false;
+        if (snapshot.exists() && 'active' in snapshot.val()) {
+            newStatus = !snapshot.val()['active'];
+        }
+        set(ref(getDatabase(), 'users/'+uid+'/active'), newStatus);
+        setActive(newStatus);
+        if (newStatus) {
+          addNewSession(uid);
+        }
+      }).catch((error) => {
+        console.error(error);
+    });
+  }
+
+
 
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light
@@ -90,14 +160,19 @@ function Practice() {
               No pressure, no stakes shoot session. This will track the number of attempted shots
               and number of completed shots
             </MKTypography>
-            <MKButton color="success" size="large" /*sx={{ color: ({ palette: { dark } }) => dark.main }}*/>
-              Begin session
+            <MKButton
+              color={active ? "warning" : "success"}
+              size="large" /*sx={{ color: ({ palette: { dark } }) => dark.main }}*/
+              onClick={startSession}
+            >
+              {active ? "End session" : "Begin session" }
             </MKButton>
           </Grid>
         </Container>
       </MKBox>
+      {active ? (<GameStatus sessionIndex={session}/>) : (null)}
       <MKBox pt={6} px={1} mt={6}>
-        <DefaultFooter content={footerRoutes} />
+        <Footer/>
       </MKBox>
     </>
   );

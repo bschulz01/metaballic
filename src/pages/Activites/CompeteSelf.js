@@ -39,14 +39,21 @@ import footerRoutes from "footer.routes";
 
 import Dropdown from "../../components/Dropdown/Dropdown";
 
+// Firebase
+
 // Images
 import bgImage from "assets/images/bg-about-us.jpg";
+import fire from "../User/fire";
+import loggedInRoute from "../../loggedInRoute";
+import loggedOutRoute from "../../loggedOutRoute";
+import React from "react";
 
 function CompeteSelf() {
 
   return (
     <>
       <DefaultNavbar
+        // routes={routes.concat(fire.auth().currentUser ? loggedInRoute : loggedOutRoute)}
         routes={routes}
         transparent
         light

@@ -53,8 +53,11 @@ import Records from "./pages/Stats/Records";
 import Sessions from "./pages/Stats/Sessions";
 // Other Pages
 import Friends from "./pages/User/Friends";
-import SignIn from "./pages/User/SignIn";
 import Profile from "./pages/User/Profile";
+import SignOut from "./pages/User/SignOut";
+import SignIn from "./pages/User/SignIn";
+
+import fire from "./pages/User/fire";
 
 const routes = [
   {
@@ -127,12 +130,6 @@ const routes = [
     component: <Friends />,
   },
   {
-    name: "Sign in",
-    // icon: <Icon>S</Icon>,
-    route: "/authentication/sign-in",
-    component: <SignIn />,
-  },
-  {
     name: "account",
     // icon: <Icon>A</Icon>,
     collapse: [
@@ -144,11 +141,49 @@ const routes = [
       },
       {
         name: "Log Out",
+        route: "/user/signout",
         description: "Sign out of your account",
-        href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        component: <SignOut/>,
       },
     ],
   },
+  {
+    name: "Sign in",
+    // icon: <Icon>S</Icon>,
+    route: "/authentication/sign-in",
+    component:<SignIn/>,
+  }
 ];
+
+// if (fire.auth().currentUser) {
+//   routes.concat([
+//     {
+//       name: "account",
+//       // icon: <Icon>A</Icon>,
+//       collapse: [
+//         {
+//           name: "Profile",
+//           route: "/user/profile",
+//           description: "Update profile information",
+//           component: <Profile/>
+//         },
+//         {
+//           name: "Log Out",
+//           route: "/user/signout",
+//           description: "Sign out of your account",
+//           component: <SignOut/>,
+//         },
+//       ],
+//     },
+//   ])
+// } else {
+//   routes.concat([
+//   {
+//     name: "Sign in",
+//     // icon: <Icon>S</Icon>,
+//     route: "/authentication/sign-in",
+//     component:<SignIn/>,
+//   }])
+// }
 
 export default routes;
