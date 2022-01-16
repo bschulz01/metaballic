@@ -53,6 +53,7 @@ function ActivityTile({ image, activityName, shotsMade, shotsAttempted }) {
   const [showModal, setShow] = useState(false);
   const toggleModal = () => {
     setShow(!showModal)
+    console.log("Toggle clicked")
   };
 
   const imageTemplate = (
